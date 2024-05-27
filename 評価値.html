@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>学マス評価値計算ツール</title>
+  </head>
+  <body>
+    <h1>学マス評価値計算ツール</h1>
+    　　ボーカル:<input id="vo" type="text"><br>
+    　　　ダンス:<input id="da" type="text"><br>
+    　ビジュアル:<input id="vi" type="text"><br>
+    中間試験結果:<input id="ty" type="text"><br>
+    最終試験結果:<input id="ls" type="text"><br>
+    <input id="calculate" type="button" value="計算">
+    <p id="lists"></p>
+
+    <script>
+    document.getElementById('calculate').onclick = function () {
+    var li = document.createElement('li');
+    var vo = parseFloat(document.getElementById('vo').value);
+    var da = parseFloat(document.getElementById('da').value);
+    var vi = parseFloat(document.getElementById('vi').value);
+    var ty = parseFloat(document.getElementById('ty').value);
+    var ls = parseFloat(document.getElementById('ls').value);
+    var x = 0;
+    if(ls<=5000){
+        x = point*0.3;
+    }else if(ls<=10000){
+        x = (ls-5000)*0.15+1500;
+    }else{
+        x = 2250+(ls-10000)*0.08;
+    }
+
+  var result = document.getElementById('calculate').textContent = (vo+da+vi)*2.3+ty+x;
+  var number = document.createTextNode(result.toFixed());
+
+  li.appendChild(number);
+
+  var lists = document.getElementById('lists');
+  lists.appendChild(li);
+};
+    </script>
+  </body>
+</html>
